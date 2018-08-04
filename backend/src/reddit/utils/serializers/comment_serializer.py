@@ -9,7 +9,7 @@ class CommentModelSerializer(serializers.ModelSerializer):
 	user = UserDisplaySerializer()
 	class Meta:
 		model = Comment
-		fields = ('user', 'user_comment')
+		fields = ('id', 'user', 'user_comment')
 
 	# def create(self, validated_data):
 	# 	model_comment_data = validated_data.pop('user')

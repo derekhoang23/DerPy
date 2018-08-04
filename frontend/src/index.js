@@ -23,7 +23,7 @@ class RouteRender extends Component {
 				<div>
 					<NavbarContainer/>
 					<Switch>
-						<Route path='/r/:subreddit/:id' component={SubredditContentContainer}/>
+						<Route path='/r/:subreddit/:subredditId/subreddit_content/:contentId' component={SubredditContentContainer}/>
 						<Route exact path={url} component={App}/>
 					</Switch>
 				</div>

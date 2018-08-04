@@ -22,11 +22,10 @@ export default class Subreddit extends Component {
 	render() {
 		const { subreddits } = this.state;
 		const { match } = this.props;
-		console.log('match in subreddit ', match)
 		return (
 			<div>
 				{subreddits.map(subreddit => (
-					<SubredditList match={match} key={subreddit.id} id={subreddit.id} title={subreddit.title} subreddit={subreddit.subreddit.name}/>))}
+					<SubredditList match={match} key={subreddit.id} contentId={subreddit.id} subredditId={subreddit.subreddit.id} title={subreddit.title} subreddit={subreddit.subreddit.name}/>))}
 			</div>
 		)
 	}

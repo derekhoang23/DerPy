@@ -7,12 +7,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
 
 class App extends Component {
-	constructor(props) {
-		super(props)
-	}
   render() {
-  	console.log('this match ', this.props.match)
-  	const { url } = this.props.match;
     return (
       <div className="App">
       	<SubredditContainer/>

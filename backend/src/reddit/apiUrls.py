@@ -6,8 +6,9 @@ from reddit.controllers.comment import CommentController
 
 
 
-router = DefaultRouter()
-router.register(r'subreddit_content/(?P<subreddit>[a-zA-Z]+)/(?P<subreddit_id>\d+)', SubredditContentView, base_name="subreddit_content_detail_view")
+router = DefaultRouter(trailing_slash=False)
+router.register(r'(?P<subreddit>[a-zA-Z]+)/(?P<subreddit_id>\d+)/subreddit_content/(?P<content_id>\d+)', SubredditContentView, base_name="subreddit_content_detail_view")
+router.register(r'(?P<subreddit>[a-zA-Z]+)/(?P<subreddit_id>\d+)/subreddit_content/(?P<content_id>\d+)/comment', CommentController, base_name='comment_post')
 router.register(r'subreddit_content', SubredditContentDetailView, base_name='subreddit_content_list')
 router.register(r'content_list', SubredditContentView, base_name='content_list')
 router.register(r'comments', CommentController, base_name='comment')

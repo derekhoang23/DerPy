@@ -17,31 +17,22 @@ class SubredditContentView(viewsets.ViewSet):
 	# serializer_class = SubredditContentSerializer
 	# lookup_field = 'subreddit'
 
-	def list(self, request):
-		queryset = SubredditContent.objects.all();
-		# queryset = self.get_queryset();
-		serializer = SubredditContentSerializer(queryset, many=True)
-		return Response(serializer.data)
-	# def
-	# @permission_classes([AllowAny])
-	# def get_subreddit_content(self, request):
-	# 	print('req')
-	# 	subreddit_content = SubredditContent.objects.all()
-	# 	return Response(data=None, status=status.HTTP_200_OK)
-
-# from django.db.models import Q
-# import operator
-# class MultipleFieldLookupMixin(object):
-#   def get_object(self):
-#     queryset = self.get_queryset()             # Get the base queryset
-#     queryset = self.filter_queryset(queryset)  # Apply any filter backends
-#     filter = {}
-#     for field in self.lookup_fields:
-#     	print('field ', field)
-#     	filter[field] = self.kwargs[field]
-#     q = reduce(operator.or_, (Q(x) for x in filter.items()))
-#     return get_object_or_404(queryset, q)
-
+	def list(self, request, subreddit=None, subreddit_id=None, content_id=None):
+		queryset = SubredditContent.objects.all()
+		if subreddit_id is None:
+			serializer = SubredditContentSerializer(queryset, many=True)
+			return Response(serializer.data)
+		else:
+			queryset = SubredditContent.objects.filter(pk=content_id);
+			for items in queryset:
+				print('items ', items)
+			serializer = SubredditContentDetailSerializer(queryset, many=True)
+			subreddit_content = serializer.data
+			for item in subreddit_content:
+				subreddit_query = item.get('subreddit').get('id')
+				subreddit_id = int(subreddit_id)
+				if subreddit_query == subreddit_id:
+					return Response(item)
 
 class SubredditContentDetailView(viewsets.ViewSet):
 	queryset = SubredditContent.objects.all()

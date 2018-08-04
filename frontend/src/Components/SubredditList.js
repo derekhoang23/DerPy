@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
-import { Jumbotron } from 'react-bootstrap' 
-import { Link, Route, Switch, matchPath } from 'react-router-dom';
+import { Jumbotron } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { ModalRoute } from 'react-router-modal';
 import Test from './Test';
 import PropTypes from 'prop-types';
 
-const getParams = pathname => {
-  const matchProfile = matchPath(pathname, {
-    path: `/r/:subreddit/:id`,
-  });
-  return (matchProfile && matchProfile.params) || {};
-};
 
 export default class SubredditList extends Component {
 	// static propTypes = {
@@ -33,19 +27,12 @@ export default class SubredditList extends Component {
 		this.setState({ showModal: !showModal })
 	}
 	render() {
-		const { subreddit, id, title, match } = this.props;
-		const { showModal } = this.state;
-		console.log('show ', showModal)
-		console.log('subreditlist match ', match)
-		console.log('subreddit ', subreddit)
-		console.log('id ', id)
-				// <Route to={`/r/:subreddit/:id`} component={Test}/>
-					// <Link onClick={this.toggleModal.bind(this)} to={`/r/${subreddit}/${subreddit.id}`}>{title}</Link>
+		const { subreddit, subredditId, title, contentId } = this.props;
 		return (
 			<div>
 				<Jumbotron>
 					<h5>{subreddit}</h5>
-					<Link to={`/r/${subreddit}/${id}`}>{title}</Link>
+					<Link to={`/r/${subreddit}/${subredditId}/subreddit_content/${contentId}`}>{title}</Link>
 				</Jumbotron>
 			</div>
 		)
