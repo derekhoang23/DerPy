@@ -5,7 +5,8 @@ from reddit.utils.serializers.subreddit_serializer import SubredditSerializer
 
 class SubredditContentSerializer(serializers.HyperlinkedModelSerializer):
 	subreddit = SubredditSerializer()
-	comment = CommentModelSerializer()
+	# comment = CommentModelSerializer()
 	class Meta:
 		model = SubredditContent
-		fields = ('id', 'title', 'subreddit', 'comment', )
+		fields = ('id', 'title', 'subreddit')
+

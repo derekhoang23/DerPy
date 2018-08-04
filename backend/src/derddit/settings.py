@@ -40,16 +40,17 @@ INSTALLED_APPS = [
     'reddit',
     'accounts',
     'rest_framework',
-    'corsheaders',    
+    'corsheaders',
 ]
 
 REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
-    )
+    ),
 }
 
 CSRF_COOKIE_NAME = "csrftoken"
